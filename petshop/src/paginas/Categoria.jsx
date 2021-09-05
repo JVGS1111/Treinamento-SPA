@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ListaCategorias from '../componentes/ListaCategorias'
-import '../assets/css/blog.css'
 import ListaPost from '../componentes/ListaPost'
+import '../assets/css/blog.css'
 import { Route, useParams, useRouteMatch, Link, Switch } from 'react-router-dom'
 import { busca } from '../api/Api'
-import SubCategoria from './Subcategorias'
+import SubCategoria from './Subcategoria'
+
 
 const Categoria = () => {
     const { url, path } = useRouteMatch()
     const { id } = useParams()
-    const [subcategorias, setSubcategorias] = useState([])
+    console.log(url);
+    const [subcategorias, setSubCategorias] = useState([])
 
     useEffect(() => {
         busca(`/categorias/${id}`, (categoria) => {
-            setSubcategorias(categoria.subcategorias)
+            setSubCategorias(categoria.subcategorias)
         })
     }, [id])
-
     return (
         <>
             <div className="container">
@@ -26,13 +27,17 @@ const Categoria = () => {
             <ListaCategorias />
             <ul className="lista-categorias container flex">
                 {
-                    subcategorias.map(subcategoria => {
-                        return (
-                            <li className={`lista-categorias__categoria lista-categorias__categoria--${id}`} key={subcategoria}>
-                                <Link to={`${url}/${subcategoria}`}>{subcategoria}</Link>
-                            </li>
-                        )
-                    })
+                    subcategorias.map((subcategoria) => (
+                        <li
+                            className={`lista-categorias__categoria lista-categorias__categoria--${id}`}
+                            key={subcategoria}
+                        >
+                            <Link to={`${url}/${subcategoria}`}>
+                                {subcategoria}
+                            </Link>
+                        </li>
+                    ))
+
                 }
             </ul>
             <Switch>
@@ -46,5 +51,4 @@ const Categoria = () => {
         </>
     )
 }
-
 export default Categoria

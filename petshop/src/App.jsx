@@ -11,32 +11,30 @@ import Categoria from './paginas/Categoria'
 function App() {
 
   return (
-    <>
-      <Router>
-        <Cabecalho />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
+    <Router>
+      <Cabecalho />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
 
-          <Route exact path='/Sobre'>
-            <Sobre />
-          </Route>
+        <Route exact path='/sobre'>
+          <Sobre />
+        </Route>
 
-          <Route exact path='/Categoria/:id'>
-            <Categoria />
-          </Route>
+        <Route path='/categoria/:id'>
+          <Categoria />
+        </Route>
 
-          <Route exact path='/Posts/:id'>
-            <Post />
-          </Route>
+        <Route path='/posts/:id'>
+          <Post />
+        </Route>
 
-          <Route>
-            <Pagina404 />
-          </Route>
-        </Switch>
-      </Router>
-    </>
+        <Route>
+          <Pagina404 />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 

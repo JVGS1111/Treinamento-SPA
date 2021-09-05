@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { busca } from '../api/Api';
-import '../assets/css/blog.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { busca } from '../api/Api'
+import '../assets/css/blog.css'
 
 const ListaCategorias = () => {
 
     const [categorias, setCategorias] = useState([])
 
     useEffect(() => {
-        busca('/categorias', setCategorias)
+        busca(`/categorias`, setCategorias)
     }, [])
+
     return (
         <ul className="lista-categorias container flex">
             {
-                categorias.map(categoria => (
+                categorias.map((categoria) => (
                     <Link to={`/categoria/${categoria.id}`}>
                         <li className={`lista-categorias__categoria lista-categorias__categoria--${categoria.id}`}>
                             {categoria.nome}
@@ -22,7 +23,7 @@ const ListaCategorias = () => {
                 ))
             }
         </ul>
-    );
+    )
 }
 
-export default ListaCategorias;
+export default ListaCategorias
